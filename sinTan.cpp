@@ -6,6 +6,7 @@
 
 #include <cmath>
 #include <iostream>
+#include <iomanip>
 
 
 int main() {
@@ -15,12 +16,12 @@ int main() {
     float sinTanProduct;
 
     // ask the user what table they would like to see
-    std::cout << "This program displays a sin or tan table of all angles";
-    std::cout << "from 0 to 360. Press 1 for the";
+    std::cout << "This program displays a sin or tan table of all angles ";
+    std::cout << "from 0 to 360. Press 1 for the ";
     std::cout << "sin table and 2 for the tan table: ";
     std::cin >> userTableChoiceStr;
 
-    // initialize counter and sinTanProduct to 0
+    // initialize sinTanProduct and counter to 0
     counter = 0;
     sinTanProduct = 0;
 
@@ -35,25 +36,24 @@ int main() {
                  sinTanProduct = sin(counter);
 
                  // display the sin product
-                 std::cout << "sin " << counter
-                 << " = " << sinTanProduct << std::endl;
+                std::cout << "sin " << counter
+                << " radians = " << std::fixed << std::setprecision(2)
+                << std::setfill('0') << sinTanProduct << std::endl;
 
                  // increment the counter
                  counter++;
              }
         } else if (userTableChoiceInt == 2) {
-            // otherwise if choice = 2, then use a while loop for the tan table
-             while (counter <= 360) {
-                 // calculate the tan of the counter
-                 sinTanProduct = tan(counter);
+            // otherwise if choice = 2, then use a for loop for the tan table
+            for (counter = 0; counter <= 360; counter++) {
+                // calculate the tan of the counter
+                sinTanProduct = tan(counter);
 
-                 // display the tan product
-                 std::cout << "tan " << counter
-                 << " = " << sinTanProduct << std::endl;
-
-                 // increment the counter
-                 counter++;
-             }
+                // display the tan product
+                std::cout << "tan " << counter
+                << " radians = " << std::fixed << std::setprecision(2)
+                << std::setfill('0') << sinTanProduct << std::endl;
+            }
         } else {
             // otherwise, tell them to enter 1 or 2
             std::cout << " Please enter 1 or 2 for your table choice."
@@ -62,7 +62,7 @@ int main() {
     } catch (std::invalid_argument) {
         // if user table choice cannot be an int, tell the user to enter one
         std::cout << userTableChoiceStr
-        << " is not valid integer, please enter one." <<
+        << " is not a valid integer, please enter one." <<
         std::endl;
     }
 }
